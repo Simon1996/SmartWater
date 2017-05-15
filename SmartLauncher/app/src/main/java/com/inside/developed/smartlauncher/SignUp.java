@@ -22,7 +22,7 @@ public class SignUp extends AppCompatActivity {
     EditText edtConfirm;
     Button btnSignUp;
     TextView txtLogInLink;
-    SignUpCallback callback;
+    String logging, logused, passmatch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,9 @@ public class SignUp extends AppCompatActivity {
         edtConfirm = (EditText)findViewById(R.id.input_password_confirm);
         btnSignUp = (Button)findViewById(R.id.btn_signup);
         txtLogInLink = (TextView)findViewById(R.id.link_login);
+        logging = getResources().getString(R.string.logging);
+        logused = getResources().getString(R.string.log_used);
+        passmatch = getResources().getString(R.string.logging);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,24 +55,15 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
     private boolean checkPasswords() {
         if(edtPassword.getText().toString().equals(edtConfirm.getText().toString())){
             return true;
         }else{
-            Toast.makeText(SignUp.this.getApplicationContext(),"Passwords doesn't match",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this.getApplicationContext(),logused,Toast.LENGTH_SHORT).show();
             return false;
         }
-
-
     }
-    public interface SignUpCallback{
-
-        void  onLoginLinkListner();
-        void   onOpenMainFragment(String token);
-    }
-
-
-
 
     class MyAsynkTask extends AsyncTask<String,Void,String> {
         ProgressDialog progressDialog ;
@@ -77,7 +71,7 @@ public class SignUp extends AppCompatActivity {
         protected void onPreExecute() {
             progressDialog = new ProgressDialog(SignUp.this);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Logging....");
+            progressDialog.setMessage(logging);
             progressDialog.show();
         }
 
@@ -97,7 +91,6 @@ public class SignUp extends AppCompatActivity {
             }
 
             return token;
-
         }
 
         @Override
@@ -110,10 +103,8 @@ public class SignUp extends AppCompatActivity {
                 Intent intent = new Intent(SignUp.this, MainActivity.class);
                 startActivity(intent);
             }else{
-                Toast.makeText(SignUp.this.getApplicationContext(),"This login is already used",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUp.this.getApplicationContext(),logused,Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
 }

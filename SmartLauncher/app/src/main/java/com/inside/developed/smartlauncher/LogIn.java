@@ -19,7 +19,7 @@ public class LogIn extends AppCompatActivity {
     EditText edtPassword;
     Button btnLogin;
     TextView singUpLink;
-    MyCallBack myCallBack;
+    String logging, logpass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,8 @@ public class LogIn extends AppCompatActivity {
         edtPassword = (EditText)findViewById(R.id.input_password);
         btnLogin = (Button)findViewById(R.id.btn_login);
         singUpLink = (TextView)findViewById(R.id.link_signup);
-
+        logging = getResources().getString(R.string.logging);
+        logpass = getResources().getString(R.string.no_pass_log);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,7 @@ public class LogIn extends AppCompatActivity {
         protected void onPreExecute() {
             progressDialog = new ProgressDialog(LogIn.this);
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Logging....");
+            progressDialog.setMessage(logging);
             progressDialog.show();
         }
 
@@ -75,20 +76,10 @@ public class LogIn extends AppCompatActivity {
                 Intent intent = new Intent(LogIn.this, MainActivity.class);
                 startActivity(intent);
             }else{
-                Toast.makeText(LogIn.this.getApplicationContext(),"No such login & password combination",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogIn.this.getApplicationContext(), logpass,Toast.LENGTH_SHORT).show();
             }
 
 
         }
     }
-    public interface MyCallBack{
-
-        void openSignUp();
-
-        void openMainFragment(String token);
-    }
-
-
-
-
 }

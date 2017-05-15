@@ -18,21 +18,15 @@ import android.provider.Settings;
 
 public class GPSTracker extends Service implements LocationListener {
 
-
+    Location location;
     private Context context;
-
     boolean isGPSEnabled=false;
     boolean isNetworkEnabled=false;
     boolean canGetLocation=false;
-
-    Location location;
-
     double latitude;
     double longitude;
-
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES=10;
     private static final long MIN_TIME_BW_UPDATES=1000*60*1;
-
     protected LocationManager locationManager;
 
     public GPSTracker(Context context)
@@ -48,9 +42,6 @@ public class GPSTracker extends Service implements LocationListener {
             isGPSEnabled=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             isNetworkEnabled=locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-
-
-
             if(!isGPSEnabled && !isNetworkEnabled)
             {
                 showSettingsAlert();
@@ -60,7 +51,6 @@ public class GPSTracker extends Service implements LocationListener {
                 if(isNetworkEnabled)
                 {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-
 
                     if(locationManager !=null)
                     {
@@ -195,6 +185,5 @@ public class GPSTracker extends Service implements LocationListener {
         // TODO Auto-generated method stub
         return null;
     }
-
 
 }

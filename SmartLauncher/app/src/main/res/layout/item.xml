@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="187dp"
+        android:layout_below="@+id/card_temp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/image_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/marker_icon" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/image_water"
+                android:layout_toRightOf="@+id/image_water"
+                android:text="@string/location"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/locy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/locxy"
+                android:layout_toRightOf="@+id/locxy"
+                android:text="y"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/locxy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/title_text"
+                android:layout_alignBottom="@+id/title_text"
+                android:layout_toEndOf="@+id/locx"
+                android:layout_toRightOf="@+id/locx"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="|"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/locx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/title_text"
+                android:layout_alignBottom="@+id/title_text"
+                android:layout_toEndOf="@+id/title_text"
+                android:layout_toRightOf="@+id/title_text"
+                android:text="x"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/image_water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/waterlev_text"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/water_icon" />
+
+            <TextView
+                android:id="@+id/waterlev_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/image_water"
+                android:layout_toRightOf="@+id/image_water"
+                android:text="@string/waterlevel"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/water_lvl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/waterlev_text"
+                android:layout_alignBottom="@+id/waterlev_text"
+                android:layout_toEndOf="@+id/waterlev_text"
+                android:layout_toRightOf="@+id/waterlev_text"
+                android:text="0"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/image_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/status_bad_icon" />
+
+            <TextView
+                android:id="@+id/status_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/image_status"
+                android:layout_toRightOf="@+id/image_status"
+                android:text="@string/status"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/status_txt"
+                android:layout_alignBottom="@+id/status_txt"
+                android:layout_toEndOf="@+id/status_txt"
+                android:layout_toRightOf="@+id/status_txt"
+                android:text="ok"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

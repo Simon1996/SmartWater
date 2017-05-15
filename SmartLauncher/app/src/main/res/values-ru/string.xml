@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">SmartWater</string>
-    <string name="title_home">Главная</string>
+    <string name="title_home">Home</string>
     <string name="title_dashboard">Карта</string>
     <string name="title_notifications">Уведомления</string>
+    <string name="title_activity_login">Регистрация</string>
+
+    <!-- Strings related to login -->
+    <string name="no_account">Нет аккаунта? Создать новый</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_log_in">Войти</string>
+    <string name="action_sign_in">Регистрация</string>
+    <string name="action_new_account">Регистрация</string>
+    <string name="action_sign_in_short">Регистрация</string>
+    <string name="error_invalid_email">Email введен не верно </string>
+    <string name="error_invalid_password">Короткий пароль</string>
+    <string name="error_incorrect_password">Не верный пароль</string>
+    <string name="error_field_required">Это поле обязательно к заполнению</string>
+    <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
+    <string name="action_already_have_account">Есть аккаунт? Войти</string>
+    <string name="get_data">Обновление данных, подождите..</string>
+    <string name="logging">Вход...</string>
+    <string name="no_pass_log">Логин или пароль не существует</string>
+    <string name="pass_not_match">Пароли не совпадают</string>
+    <string name="log_used">Этот логин уже используется</string>
+
+    <string name="waterlevel">Литров воды: </string>
+    <string name="status">Состояние автомата: </string>
+    <string name="location">Коорд.(х|y): </string>
+
 </resources>

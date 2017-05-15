@@ -9,14 +9,25 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
-    <string name="action_new_account">Register</string>
+    <string name="action_new_account">Create Account</string>
+    <string name="action_already_have_account">Already a member? Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
+    <string name="no_account">No account yet? Create one</string>
+    <string name="action_log_in">Login</string>
+    <string name="no_pass_log">No such login | password combination</string>
+    <string name="pass_not_match">Passwords doesn\'t match</string>
+    <string name="log_used"> This login is already used</string>
+    <string name="get_data">Refresh data, wait...</string>
+    <string name="logging">Logging...</string>
+
+
+    <string name="waterlevel">Water Level:</string>
+    <string name="status">Status:</string>
+    <string name="location">Location(x | y)</string>
 
 </resources>

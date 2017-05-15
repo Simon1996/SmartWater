@@ -5,18 +5,24 @@ package com.inside.developed.smartlauncher;
  */
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,33 +36,85 @@ import java.util.List;
 
 public class Notifications extends Fragment {
 
-
-    ListView listview;
-    String[] ListElements = new String[] {};
-    List<String> ListElementsArrayList;
-    ArrayAdapter<String> adapter;
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+    String getdata;
     public Notifications() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycle);
+        recyclerView.setHasFixedSize(true);
+        getdata = getResources().getString(R.string.get_data);
+        myAdapter = new MyAdapter();
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         MyAsynkTask asynkTask = new MyAsynkTask();
         asynkTask.execute();
-        listview = (ListView) view.findViewById(R.id.listView1);
 
-        ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
-
-
-        adapter = new ArrayAdapter<String>
-                (getActivity(), android.R.layout.simple_list_item_1, ListElementsArrayList);
-
-        listview.setAdapter(adapter);
 
         return view;
 
+    }
+
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+        ArrayList<Automats> arrayList;
+
+        public MyAdapter() {
+
+            arrayList = new ArrayList<>();
+
+            notifyDataSetChanged();
+            //  createNotification(getContext());
+        }
+
+        public void addNews(Automats news) {
+            arrayList.add(news);
+            notifyDataSetChanged();
+
+        }
+        @Override
+        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+            return new ViewHolder(itemView);
+        }
+
+        //Кидаем название, текст новости и изображение по местам.
+        @Override
+        public void onBindViewHolder(final MyAdapter.ViewHolder holder, final int position) {
+
+            holder.locy.setText(arrayList.get(position).getLocationy());
+            holder.locx.setText(arrayList.get(position).getLocationx());
+            holder.waterlvl.setText(arrayList.get(position).getWaterlevel());
+            holder.status.setText(arrayList.get(position).getStatus());
+        }
+
+        @Override
+        public int getItemCount() {
+            return arrayList.size();
+        }
+        //Определяем елементы
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView locy;
+            TextView locx;
+            TextView waterlvl;
+            TextView status;
+
+
+            //Определяем title, article, image;
+            public ViewHolder(View itemView) {
+                super(itemView);
+                locy = (TextView) itemView.findViewById(R.id.locy);
+                locx = (TextView) itemView.findViewById(R.id.locx);
+                waterlvl = (TextView) itemView.findViewById(R.id.water_lvl);
+                status = (TextView) itemView.findViewById(R.id.status);
+            }
+        }
     }
 
     class MyAsynkTask extends AsyncTask<Void, Void, StringBuilder> {
@@ -65,7 +123,7 @@ public class Notifications extends Fragment {
         protected void onPreExecute() {
             progressDialog = new ProgressDialog(getActivity());
             progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Get data, wait please....");
+            progressDialog.setMessage(getdata);
             progressDialog.show();
         }
         @Override
@@ -102,15 +160,21 @@ public class Notifications extends Fragment {
                     String usercount = object.getString("usercount");
                     String status = object.getString("status");
                             if(status.contains("bad")) {
-                                ListElementsArrayList.add("Location: "+ locationx.toString() + "|" + locationy.toString() +"\n"
-                                        + "Water Level: " + waterlevel.toString() +"\n"
-                                        + "Last Update: "+ lastupdate.toString() +"\n"
-                                        + "Users: " +  usercount.toString() +"\n"
-                                        + "Status: " + status.toString() );
+//                                ListElementsArrayList.add("Location: "+ locationx.toString() + "|" + locationy.toString() +"\n"
+//                                        + "Water Level: " + waterlevel.toString() +"\n"
+//                                        + "Last Update: "+ lastupdate.toString() +"\n"
+//                                        + "Users: " +  usercount.toString() +"\n"
+//                                        + "Status: " + status.toString() );
+//
+//
+                                Automats news = new Automats(locationy, locationx,waterlevel ,lastupdate ,usercount ,status );
+                                myAdapter.addNews(news);
 
-
+                                myAdapter.notifyDataSetChanged();
                             }
-                    adapter.notifyDataSetChanged();
+                 //   adapter.notifyDataSetChanged();
+
+
 
                 }
                 progressDialog.dismiss();
@@ -121,7 +185,5 @@ public class Notifications extends Fragment {
 
         }
     }
-
-
 
 }

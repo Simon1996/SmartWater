@@ -20,7 +20,6 @@ import java.util.Date;
 
 public class Util {
 
-
     public static JSONObject getResponse(String urlString){
         StringBuilder parsedContentFromUrl = new StringBuilder();
         try {
@@ -41,6 +40,7 @@ public class Util {
             return null;
         }
     }
+
     public static String getToken(JSONObject object){
         try {
             if (object.getString("status").equals("OK")) {
@@ -52,6 +52,7 @@ public class Util {
             return null;
         }
     }
+
     public static String getLoc(JSONObject object){
         try {
             if (object.getString("status").equals("OK")) {
@@ -63,6 +64,7 @@ public class Util {
             return null;
         }
     }
+
     public static JSONObject getResponse(String urlString,JSONObject data){
         StringBuilder parsedContentFromUrl = new StringBuilder();
         try {
